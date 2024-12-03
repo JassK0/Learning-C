@@ -1,0 +1,8 @@
+first line should be changing the name of the executable
+then compile
+
+swapInts:
+		gcc swapInt.c -o swap
+
+swapInt.o:
+		gcc swapInt.c -c
