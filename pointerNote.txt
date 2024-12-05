@@ -1,0 +1,6 @@
+/*
+
+*	Access or modify the content of the pointer, but the pointer remains unchanged.
+**	Modify the pointer itself, allowing reassignment to a new memory location.
+
+*/
