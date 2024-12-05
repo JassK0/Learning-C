@@ -12,7 +12,7 @@ However, que8.c is missing some code, denoted by XXXXXXX.
 Copy que8.c to ans8.c and complete ans8.c by replacing only XXXXXXX,
 so that the program functions as required.
 
-Do not modify que8main.c or que8.h. 
+Do not modify que8main.c or que8.h.
 
 > gcc que8main.c ans8.c
 > ./a.out
@@ -46,6 +46,7 @@ cannot delete from empty list
 deleting from front of list
 cannot delete from empty list
 
+//gcc q8main.c ans8.c -o ans8
 
 */
 
@@ -53,100 +54,114 @@ cannot delete from empty list
 #include <stdlib.h>
 #include "que8.h"
 
-NodeType *newNode(int v) {
+NodeType *newNode(int v)
+{
   NodeType *new;
-  new=(NodeType *) malloc(sizeof(NodeType));
-  new->value=v;
-  new->next=NULL;
-  return(new);
+  new = (NodeType *)malloc(sizeof(NodeType));
+  new->value = v;
+  new->next = NULL;
+  return (new);
 }
 
-NodeType *makeList(void) {
-  return(NULL);
+NodeType *makeList(void)
+{
+  return (NULL);
 }
 
-void printList(NodeType *L) {
- NodeType *p;
- for (p=L; p!=NULL; ) {
-   printf(" %d ", p->value);
-   p=p->next;
- }
- return;
-}
-
-int lengthList(NodeType *L){
- NodeType *p;
- int len=0;
- for (p=L; p!=NULL; ) {
-   len++;
-   p=p->next;
- }
- return(len); 
-}
-
-void AddToFront(NodeType **L, int v) {
-
-  NodeType *new=newNode(v);
-  new->next=*L;
-  *L=new;
-  return; 
-}
-
-void AddToEnd(NodeType **L, int v) {
-
-  NodeType *new=newNode(v);
-  //adding to end of empty list
-  if ((*L)==NULL)  
-     *L=new;
-  else {           
-  //adding to end of non-empty list
-     NodeType *p=*L;
-     while ((p->next)!=NULL) //traverse until p points to last node
-        p=p->next; 
-     p->next=new;            //add new after current last node
+void printList(NodeType *L)
+{
+  NodeType *p;
+  for (p = L; p != NULL;)
+  {
+    printf(" %d ", p->value);
+    p = p->next;
   }
-  return ;
+  return;
 }
 
-void DelFromFront(NodeType **L){
-  //deleting from front of empty list
-  //XXXXXXX
-  if (*L == NULL){
+int lengthList(NodeType *L)
+{
+  NodeType *p;
+  int len = 0;
+  for (p = L; p != NULL;)
+  {
+    len++;
+    p = p->next;
+  }
+  return (len);
+}
+
+void AddToFront(NodeType **L, int v)
+{
+
+  NodeType *new = newNode(v);
+  new->next = *L;
+  *L = new;
+  return;
+}
+
+void AddToEnd(NodeType **L, int v)
+{
+
+  NodeType *new = newNode(v);
+  // adding to end of empty list
+  if ((*L) == NULL)
+    *L = new;
+  else
+  {
+    // adding to end of non-empty list
+    NodeType *p = *L;
+    while ((p->next) != NULL) // traverse until p points to last node
+      p = p->next;
+    p->next = new; // add new after current last node
+  }
+  return;
+}
+
+void DelFromFront(NodeType **L)
+{
+  // deleting from front of empty list
+  // XXXXXXX
+  if (*L == NULL)
+  {
     fprintf(stderr, "CANNOT DELETE FROM EMPTY LIST");
     return;
-  } 
-  
-  //deleting from front of non-empty list
-  //XXXXXXX
-  NodeType *temp = *L;
-  *L = (*L)->next; //point to second node, basically means deleted from front or first.
-  free(temp);
-
-}
-
-void DelFromEnd(NodeType **L){
-  //deleting from end of empty list
-  if ((*L)==NULL)  {
-     fprintf(stderr,"cannot delete from empty list\n");
-     return ;
-  } 
-  //deleting from end of 1-node list
-  if (((*L)->next)==NULL) {
-    NodeType *tmp=*L;
-    *L=NULL;
-    free(tmp);
-    return ;
   }
-  //deleting from end of multi-node list
-  NodeType *p=*L;
-  while ((p->next->next)!=NULL) //traverse until p points to 2nd last node
-      p=p->next; 
-  //XXXXXXX
-  //tmp is for mempry managemnt, your not actually changing or using it, just used to 
-  //store memloc of p-> next, then freeing it delets that node
-NodeType *tmp = p->next;
-p->next = NULL;
-free(tmp);
-  return ;
+
+  // deleting from front of non-empty list
+  // XXXXXXX
+  NodeType *temp = *L;
+  *L = (*L)->next; // point to second node, basically means deleted from front or first.
+  free(temp);
 }
-  
+
+void DelFromEnd(NodeType **L)
+{
+  // deleting from end of empty list
+  if ((*L) == NULL)
+  {
+    fprintf(stderr, "cannot delete from empty list\n");
+    return;
+  }
+  // deleting from end of 1-node list
+  if (((*L)->next) == NULL)
+  {
+    NodeType *tmp = *L;
+    *L = NULL;
+    free(tmp);
+    return;
+  }
+  // deleting from end of multi-node list
+  NodeType *p = *L;
+  while ((p->next->next) != NULL) // traverse until p points to 2nd last node,
+  // if 2 steps ahaed is not null, set p = p->, basiclaly iterating it 1 place
+  //keep going until node 2 steps ahead is null, set p = ->next, meaning p is now the 2nd last
+    p = p->next;
+  // XXXXXXX
+  // tmp is for mempry managemnt, your not actually changing or using it, just used to
+  // store memloc of p-> next, then freeing it delets that node
+  NodeType *tmp = p->next; // Save the Last Node in a Temporary Pointer
+  p->next = NULL;
+  free(tmp);
+  return;
+}

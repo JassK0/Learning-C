@@ -27,3 +27,26 @@ p->next = NULL;
 free(tmp);
   return ;
 }
+
+
+How the while Loop Works Step-by-Step
+Example: Given List
+css
+Copy code
+[10] -> [20] -> [30] -> [40] -> NULL
+Initial State:
+
+p points to [10].
+Iteration 1:
+
+p->next->next points to [30] (not NULL).
+Move p to [20].
+Iteration 2:
+
+p->next->next points to [40] (not NULL).
+Move p to [30].
+Iteration 3:
+
+p->next->next points to NULL (end of the list).
+Stop the loop.
+Now, p points to [30] (second-to-last node).
