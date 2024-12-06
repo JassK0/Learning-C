@@ -1,4 +1,3 @@
-
 /*
 
 Answer file: ans7.c
@@ -17,6 +16,8 @@ so that the program functions as required.
 
 */
 
+
+
 #include <stdio.h>
 #include <time.h>
 #define C 10 //longest day and month have 9 chars: Wednesday and September
@@ -27,15 +28,16 @@ int main(void) {
 
   char months[][C] = {"January","February","March","April","May","June","July",
                        "August","September","October","November","December"};
-  //XXXXXXX
-    char days [][C] = {"Sunday", "Monday", "Tuesday", "Wednesday", 
+  char days[][C] = {"Sunday", "Monday", "Tuesday", "Wednesday", 
                         "Thursday", "Friday", "Saturday"};
+
   t = time(NULL);            //seconds since the Epoch
   systime = localtime(&t);   //break down into struct tm
 
   printf("Today is a %s ", days[systime->tm_wday] );
-  printf("%s ",  months[systime->tm_mon]);
+  printf("%s ", months[systime->tm_mon] );
   printf("%d\n",systime->tm_mday);
 
   return 0;
 }
+

@@ -1,0 +1,16 @@
+
+Answer file: ans9.c
+
+Given file que9.c is supposed to create 2 line segments and print
+the length of each, where a line segment is represented by its two 
+endpoints. The program should produce the output below.
+
+However, the program is missing some code, denoted by XXXXXXX.
+Copy que9.c to ans9.c and complete ans9.c by replacing only XXXXXXX. 
+so that the program functions as required.
+
+> gcc ans9.c -lm
+> ./a.out
+Line from (0,-1) to (1,0) has length 1.41.
+Line from (2,1) to (5,7) has length 6.71.
+>  
