@@ -1,0 +1,26 @@
+sed 's/old/new/g'
+
+dont need s if your not relacing
+
+dont need g if only want to look at first thing in line
+
+sed -i to directly edit  file in place
+
+When s/? Is Not Needed
+If you're performing other sed operations (not substitutions), you don’t need s/?. For example:
+
+Deleting lines:
+bash
+Copy code
+sed '3d' filename
+Deletes line 3.
+Printing specific lines:
+bash
+Copy code
+sed -n '2p' filename
+Prints only line 2.
+Inserting or appending text:
+bash
+Copy code
+sed '2i\New Line' filename
+Inserts "New Line" before line 2.
